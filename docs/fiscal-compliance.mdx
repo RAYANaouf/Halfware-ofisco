@@ -1,0 +1,89 @@
+---
+title: "Fiscal Compliance & Identity (Algeria)"
+description: "Algerian fiscal registration fields for company, customer, supplier, and sales invoice."
+---
+
+<Tabs>
+  <Tab title="Custom Field">
+    <Note>
+      Sales Invoice fiscal values are auto-fetched from the selected **Customer**.
+    </Note>
+
+    ## Company
+
+    | Field | Label | Type |
+    |---|---|---|
+    | `custom_rc` | N° Registre de Commerce | Data |
+    | `custom_nis` | NIS | Data |
+    | `custom_nart` | N° Art | Data |
+    | `custom_code_bp` | Code BP | Data |
+    | `custom_mat_casnos` | Matricule CASNOS | Data |
+    | `custom_mat_cnas` | Matricule CNAS | Data |
+
+    <AccordionGroup>
+      <Accordion title="Company field details">
+        <ParamField body="custom_rc" type="Data">
+          N° Registre de Commerce — commercial registration number.
+        </ParamField>
+        <ParamField body="custom_nis" type="Data">
+          NIS — statistical identification number.
+        </ParamField>
+        <ParamField body="custom_nart" type="Data">
+          N° Art — article number.
+        </ParamField>
+        <ParamField body="custom_code_bp" type="Data">
+          Code BP.
+        </ParamField>
+        <ParamField body="custom_mat_casnos" type="Data">
+          Matricule CASNOS.
+        </ParamField>
+        <ParamField body="custom_mat_cnas" type="Data">
+          Matricule CNAS.
+        </ParamField>
+      </Accordion>
+    </AccordionGroup>
+
+    ## Customer
+
+    | Field | Label | Type |
+    |---|---|---|
+    | `custom_rc` | RC | Data |
+    | `custom_nis` | NIS | Data |
+    | `custom_nart` | Code Article | Data |
+
+    ## Supplier
+
+    | Field | Label | Type |
+    |---|---|---|
+    | `custom_rc` | RC | Data |
+    | `custom_nis` | NIS | Data |
+    | `custom_nart` | Code Article | Data |
+
+    ## Sales Invoice
+
+    | Field | Label | Type | Fetch From |
+    |---|---|---|---|
+    | `custom_rc` | RC | Data | `customer.custom_rc` |
+    | `custom_nis` | NIS | Data | `customer.custom_nis` |
+    | `custom_code_article` | Code Article | Data | `customer.custom_nart` |
+
+    <AccordionGroup>
+      <Accordion title="Sales invoice auto-fetch details">
+        <ParamField body="custom_rc" type="Data">
+          Auto-fetched from `customer.custom_rc`.
+        </ParamField>
+        <ParamField body="custom_nis" type="Data">
+          Auto-fetched from `customer.custom_nis`.
+        </ParamField>
+        <ParamField body="custom_code_article" type="Data">
+          Auto-fetched from `customer.custom_nart`.
+        </ParamField>
+      </Accordion>
+    </AccordionGroup>
+  </Tab>
+  <Tab title="Server Script">
+    <Note>
+      Server script documentation is not yet available.
+    </Note>
+  </Tab>
+</Tabs>

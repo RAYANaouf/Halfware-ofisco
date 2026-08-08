@@ -1,0 +1,28 @@
+---
+title: "Employee"
+description: "Custom fields for the Employee DocType."
+---
+
+| Field | Label | Type |
+|---|---|---|
+| `custom_nin` | NIN | Data |
+| `custom_arabic_name` | Arabic Name | Data |
+| `custom_arabic_designation_name` | Arabic Designation Name | Data |
+| `custom_certificat_imprime` | Certificat de travail imprimé | Check |
+
+<AccordionGroup>
+  <Accordion title="Field details">
+    <ParamField body="custom_nin" type="Data">
+      National identification number.
+    </ParamField>
+    <ParamField body="custom_arabic_name" type="Data">
+      Employee name in Arabic.
+    </ParamField>
+    <ParamField body="custom_arabic_designation_name" type="Data">
+      Designation name in Arabic.
+    </ParamField>
+    <ParamField body="custom_certificat_imprime" type="Check">
+      Indicates whether the work certificate has been printed.
+    </ParamField>
+  </Accordion>
+</AccordionGroup>

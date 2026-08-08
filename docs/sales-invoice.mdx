@@ -1,0 +1,28 @@
+---
+title: "Sales Invoice"
+description: "Custom fields for the Sales Invoice DocType."
+---
+
+<Note>
+  Sales Invoice fiscal values are auto-fetched from the selected **Customer**.
+</Note>
+
+| Field | Label | Type | Fetch From |
+|---|---|---|---|
+| `custom_rc` | RC | Data | `customer.custom_rc` |
+| `custom_nis` | NIS | Data | `customer.custom_nis` |
+| `custom_code_article` | Code Article | Data | `customer.custom_nart` |
+
+<AccordionGroup>
+  <Accordion title="Field details">
+    <ParamField body="custom_rc" type="Data">
+      Auto-fetched from `customer.custom_rc`.
+    </ParamField>
+    <ParamField body="custom_nis" type="Data">
+      Auto-fetched from `customer.custom_nis`.
+    </ParamField>
+    <ParamField body="custom_code_article" type="Data">
+      Auto-fetched from `customer.custom_nart`.
+    </ParamField>
+  </Accordion>
+</AccordionGroup>

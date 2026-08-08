@@ -1,0 +1,57 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Ofisco",
+  "colors": {
+    "primary": "#005FB8",
+    "light": "#0E8EEE",
+    "dark": "#0C4A82"
+  },
+  "favicon": "/favicon.svg",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Intro",
+        "pages": ["intro/index"]
+      },
+      {
+        "tab": "Custom Field",
+        "pages": [
+          "docs/company",
+          "docs/customer",
+          "docs/supplier",
+          "docs/item",
+          "docs/delivery-note-item",
+          "docs/purchase-receipt-item",
+          "docs/purchase-order-item",
+          "docs/sales-invoice",
+          "docs/opportunity",
+          "docs/employee"
+        ]
+      },
+      {
+        "tab": "Server Script",
+        "pages": ["server-script/index"]
+      }
+    ]
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "ERPNext",
+        "href": "https://erpnext.com"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Dashboard",
+      "href": "https://erpnext.com/app"
+    }
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/erpnext",
+      "github": "https://github.com/frappe/erpnext"
+    }
+  }
+}

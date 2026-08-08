@@ -1,0 +1,40 @@
+---
+title: "Procurement & Item Extensions"
+description: "Purchase order balance fields and item manufacturing flag."
+---
+
+<Tabs>
+  <Tab title="Custom Field">
+    ## Purchase Order
+
+    | Field | Label | Type |
+    |---|---|---|
+    | `custom_ancien_solde` | Ancien Solde | Currency |
+    | `custom_reste_a_payer` | Reste à payer | Currency |
+
+    ## Item
+
+    | Field | Label | Type |
+    |---|---|---|
+    | `custom_is_manufactured` | Is Manufactured | Check |
+
+    <AccordionGroup>
+      <Accordion title="Field details">
+        <ParamField body="custom_ancien_solde" type="Currency">
+          Previous balance amount on the purchase order.
+        </ParamField>
+        <ParamField body="custom_reste_a_payer" type="Currency">
+          Remaining amount to be paid.
+        </ParamField>
+        <ParamField body="custom_is_manufactured" type="Check">
+          Indicates whether the item is manufactured in-house.
+        </ParamField>
+      </Accordion>
+    </AccordionGroup>
+  </Tab>
+  <Tab title="Server Script">
+    <Note>
+      Server script documentation is not yet available.
+    </Note>
+  </Tab>
+</Tabs>

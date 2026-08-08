@@ -1,0 +1,16 @@
+---
+title: "Delivery Note Item"
+description: "Custom fields for the Delivery Note Item DocType."
+---
+
+## Line Item
+
+| Field | Label | Type | Depends On |
+|---|---|---|---|
+| `custom_colissage` | Colissage | Check | `item_code.custom_colissage` |
+| `custom_qte_colissage` | Qte Colissage | Float | `eval:doc.custom_colissage` |
+| `custom_nbr_coli` | Nbr Coli | Float | `eval:doc.custom_colissage` |
+
+<Note>
+  `custom_qte_colissage` and `custom_nbr_coli` are only visible and mandatory when `custom_colissage` is enabled.
+</Note>

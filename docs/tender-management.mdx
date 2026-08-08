@@ -1,0 +1,43 @@
+---
+title: "Tenders & Public Markets (CRM)"
+description: "Opportunity fields for public tenders and restricted consultations."
+---
+
+<Tabs>
+  <Tab title="Custom Field">
+    ## Opportunity
+
+    | Field | Label | Type | Depends On |
+    |---|---|---|---|
+    | `custom_reference_marche` | Référence du marché | Data | `eval:["Appel d'Offres","Consultation restreinte","Gré à gré"].indexOf(doc.opportunity_type) > -1` |
+    | `custom_date_limite_depot` | Date limite de dépôt | Datetime | `eval:["Appel d'Offres","Consultation restreinte"].indexOf(doc.opportunity_type) > -1` |
+    | `custom_date_ouverture_plis` | Date d'ouverture des plis | Datetime | `eval:["Appel d'Offres","Consultation restreinte"].indexOf(doc.opportunity_type) > -1` |
+    | `custom_caution` | Caution provisoire / Définitive | Float | `eval:["Appel d'Offres","Consultation restreinte"].indexOf(doc.opportunity_type) > -1` |
+
+    <Note>
+      The reference field appears for **Appel d'Offres**, **Consultation restreinte**, and **Gré à gré**. The date and caution fields apply only to **Appel d'Offres** and **Consultation restreinte**.
+    </Note>
+
+    <AccordionGroup>
+      <Accordion title="Opportunity field details">
+        <ParamField body="custom_reference_marche" type="Data">
+          Market reference. Visible for **Appel d'Offres**, **Consultation restreinte**, or **Gré à gré**.
+        </ParamField>
+        <ParamField body="custom_date_limite_depot" type="Datetime">
+          Deadline for submitting tenders. Visible for **Appel d'Offres** and **Consultation restreinte**.
+        </ParamField>
+        <ParamField body="custom_date_ouverture_plis" type="Datetime">
+          Date for opening tender envelopes. Visible for **Appel d'Offres** and **Consultation restreinte**.
+        </ParamField>
+        <ParamField body="custom_caution" type="Float">
+          Provisional or definitive guarantee amount. Visible for **Appel d'Offres** and **Consultation restreinte**.
+        </ParamField>
+      </Accordion>
+    </AccordionGroup>
+  </Tab>
+  <Tab title="Server Script">
+    <Note>
+      Server script documentation is not yet available.
+    </Note>
+  </Tab>
+</Tabs>

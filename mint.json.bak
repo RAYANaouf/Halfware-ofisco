@@ -1,0 +1,49 @@
+{
+  "name": "ERPNext Custom Fields Documentation",
+  "description": "Technical reference for active custom fields and extensions.",
+  "colors": {
+    "primary": "#005FB8",
+    "light": "#0E8EEE",
+    "dark": "#0C4A82"
+  },
+  "favicon": "/favicon.svg",
+  "topbarLinks": [
+    {
+      "name": "ERPNext",
+      "url": "https://erpnext.com"
+    }
+  ],
+  "anchors": [
+    {
+      "name": "ERPNext Docs",
+      "icon": "book-open-cover",
+      "url": "https://docs.erpnext.com"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Overview",
+      "pages": ["docs/index"]
+    },
+    {
+      "group": "Fiscal Compliance",
+      "pages": ["docs/fiscal-compliance"]
+    },
+    {
+      "group": "Logistics & Colissage",
+      "pages": ["docs/packaging-logistics"]
+    },
+    {
+      "group": "CRM & Tenders",
+      "pages": ["docs/tender-management"]
+    },
+    {
+      "group": "HR & Employee",
+      "pages": ["docs/hr-payroll"]
+    },
+    {
+      "group": "Procurement & Item",
+      "pages": ["docs/procurement-item"]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+---
+title: "Packaging & Colissage Management"
+description: "Colissage, quantity, and coli fields for items and line documents."
+---
+
+<Tabs>
+  <Tab title="Custom Field">
+    ## Item
+
+    | Field | Label | Type |
+    |---|---|---|
+    | `custom_colissage` | Colissage | Check |
+
+    ## Line Item Doctypes
+
+    Applies to **Purchase Order Item**, **Purchase Receipt Item**, and **Delivery Note Item**.
+
+    | Field | Label | Type | Depends On |
+    |---|---|---|---|
+    | `custom_colissage` | Colissage | Check | `item_code.custom_colissage` |
+    | `custom_qte_colissage` | Qte Colissage | Float | `eval:doc.custom_colissage` |
+    | `custom_nbr_coli` | Nbr Coli | Float | `eval:doc.custom_colissage` |
+
+    <Note>
+      `custom_qte_colissage` and `custom_nbr_coli` are only visible and mandatory when `custom_colissage` is enabled.
+    </Note>
+
+    <AccordionGroup>
+      <Accordion title="Field details">
+        <ParamField body="custom_colissage" type="Check">
+          Indicates whether the item uses colissage. Fetched from `item_code.custom_colissage`.
+        </ParamField>
+        <ParamField body="custom_qte_colissage" type="Float">
+          Quantity per colis. Shown only when `custom_colissage` is enabled.
+        </ParamField>
+        <ParamField body="custom_nbr_coli" type="Float">
+          Number of coli. Visible and mandatory when `custom_colissage` is enabled.
+        </ParamField>
+      </Accordion>
+    </AccordionGroup>
+  </Tab>
+  <Tab title="Server Script">
+    <Note>
+      Server script documentation is not yet available.
+    </Note>
+  </Tab>
+</Tabs>
