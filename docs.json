@@ -30,8 +30,24 @@
         ]
       },
       {
+        "tab": "Client Script",
+        "pages": [
+          "client-script/delivery-note",
+          "client-script/purchase-order",
+          "client-script/purchase-receipt-item"
+        ]
+      },
+      {
         "tab": "Server Script",
         "pages": ["server-script/index"]
+      },
+      {
+        "tab": "Print Format",
+        "pages": [
+          "print-format/quotation",
+          "print-format/purchase-receipt",
+          "print-format/purchase-order"
+        ]
       }
     ]
   },
