@@ -51,7 +51,9 @@
         "pages": [
           "print-format/quotation",
           "print-format/purchase-receipt",
-          "print-format/purchase-order"
+          "print-format/purchase-order",
+          "print-format/payment-entry",
+          "print-format/stock-reconciliation"
         ]
       }
     ]
