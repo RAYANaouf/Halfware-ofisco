@@ -1,0 +1,50 @@
+---
+title: "Project"
+description: "Custom fields and related fields for the Project DocType."
+---
+
+## Project
+
+| Field | Label | Type | Read Only |
+|---|---|---|---|
+| `custom_cout_total_global` | Coût Total Global | Float | No |
+| `custom_cout_avant_vente` | Coût Avant Vente | Float | No |
+| `custom_caution_de_restitution_davance` | Caution de Restitution dAvance | Float | No |
+| `custom_sc1` | — | Column Break | No |
+| `custom_caution_de_bonne_execution` | Caution de Bonne Execution | Float | No |
+| `custom_caution_provisoire` | Caution provisoire | Float | No |
+| `custom_garanties_et_cautions_financières` | Garanties et Cautions Financières | Section Break | No |
+| `custom_opportunité_liee` | Opportunité liee | Link | Yes |
+| `total_expense_claim` | Total Expense Claim (via Expense Claims) | Currency | Yes |
+
+<AccordionGroup>
+  <Accordion title="Field details">
+    <ParamField body="custom_cout_total_global" type="Float">
+      Total overall cost.
+    </ParamField>
+    <ParamField body="custom_cout_avant_vente" type="Float">
+      Pre-sales cost.
+    </ParamField>
+    <ParamField body="custom_caution_de_restitution_davance" type="Float">
+      Advance repayment guarantee amount.
+    </ParamField>
+    <ParamField body="custom_sc1" type="Column Break">
+      Column break for caution fields.
+    </ParamField>
+    <ParamField body="custom_caution_de_bonne_execution" type="Float">
+      Performance bond guarantee amount.
+    </ParamField>
+    <ParamField body="custom_caution_provisoire" type="Float">
+      Provisional guarantee amount.
+    </ParamField>
+    <ParamField body="custom_garanties_et_cautions_financières" type="Section Break">
+      Section break for guarantees and financial bonds.
+    </ParamField>
+    <ParamField body="custom_opportunité_liee" type="Link">
+      Linked opportunity. Read-only link to an Opportunity.
+    </ParamField>
+    <ParamField body="total_expense_claim" type="Currency">
+      System-generated total of expense claims.
+    </ParamField>
+  </Accordion>
+</AccordionGroup>

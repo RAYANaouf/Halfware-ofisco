@@ -1,0 +1,53 @@
+---
+title: "Opportunity"
+description: "Server-side automation for the Opportunity DocType."
+---
+
+## Auto Create Project from Opportunity
+
+<Note>
+  Script — Type: **DocType Event** — Reference: **Opportunity** — Event: **After Save**
+</Note>
+
+This server script automatically creates or updates a linked Project when an Opportunity with the sales stage **Attribué / Gagné** is saved, for the following opportunity types: **Appel d'Offres**, **Consultation restreinte**, and **Gré à gré**.
+
+```python
+eligible_types = ["Appel d'Offres", "Consultation restreinte", "Gré à gré"]
+
+if doc.sales_stage == "Attribué / Gagné" and doc.opportunity_type in eligible_types:
+    if doc.custom_reference_marche:
+
+        project_name = frappe.db.exists("Project", {"project_name": doc.custom_reference_marche})
+
+        if not project_name:
+            # Create a new project linked to this opportunity
+            new_project = frappe.get_doc({
+                "doctype": "Project",
+                "project_name": doc.custom_reference_marche,
+                "custom_opportunité_liee": doc.name,
+                "custom_caution_provisoire": doc.get("custom_caution", 0),
+                "custom_cout_avant_vente": doc.get("custom_cout_avant_vente", 0)
+            })
+            new_project.insert(ignore_permissions=True)
+
+            doc.db_set("custom_projet_lie", new_project.name)
+
+            frappe.msgprint(
+                f"Le Projet <b>{doc.custom_reference_marche}</b> a été créé et lié à cette opportunité.",
+                alert=True,
+                indicator="green"
+            )
+        else:
+            frappe.db.set_value("Project", project_name, {
+                "custom_caution_provisoire": doc.get("custom_caution", 0),
+                "custom_cout_avant_vente": doc.get("custom_cout_avant_vente", 0)
+            })
+
+            doc.db_set("custom_projet_lie", project_name)
+
+            frappe.msgprint(
+                f"Le Projet <b>{doc.custom_reference_marche}</b> a été mis à jour et lié.",
+                alert=True,
+                indicator="blue"
+            )
+```

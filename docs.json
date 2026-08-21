@@ -23,10 +23,13 @@
           "docs/item",
           "docs/delivery-note-item",
           "docs/purchase-receipt-item",
+          "docs/purchase-order",
           "docs/purchase-order-item",
           "docs/sales-invoice",
           "docs/opportunity",
-          "docs/employee"
+          "docs/employee",
+          "docs/project",
+          "docs/contract"
         ]
       },
       {
@@ -34,12 +37,14 @@
         "pages": [
           "client-script/delivery-note",
           "client-script/purchase-order",
-          "client-script/purchase-receipt-item"
+          "client-script/purchase-receipt-item",
+          "client-script/contract",
+          "client-script/opportunity"
         ]
       },
       {
         "tab": "Server Script",
-        "pages": ["server-script/index"]
+        "pages": ["server-script/opportunity", "server-script/project"]
       },
       {
         "tab": "Print Format",

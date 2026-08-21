@@ -1,0 +1,68 @@
+---
+title: "Contract"
+description: "Custom fields for the Contract DocType."
+---
+
+| Field | Label | Type | Options |
+|---|---|---|---|
+| `custom_unite_garantie` | Unite Garantie | Select | Mois, Jours, Années |
+| `custom_delai_de_garantie` | Delai de Garantie | Int | |
+| `custom_unite_livraison` | Unite Livraison | Select | Jours, Mois |
+| `custom_delai_de_livraison` | Delai de Livraison | Int | |
+| `custom_date_theorique_de_mainlevee` | Date Theorique de Mainlevee | Date | |
+| `custom_direction` | Direction | Select | Chlef, Médéa, Blida, Aïn Defla, Djelfa, Boumerdès, Alger Est, Alger Ouest, Bouira |
+| `workflow_state` | Workflow State | Link | Workflow State |
+| `custom_caution_restitution_davance` | Caution Restitution d'Avance | Currency | |
+| `custom_caution_de_bonne_exécution` | Caution de Bonne Exécution (Required) | Currency | |
+| `custom_caution_de_soumission` | Caution de Soumission | Currency | |
+| `custom_date_ods` | Date ODS | Date | |
+| `custom_client` | Client (Required) | Link | Customer |
+| `custom_titulaire` | Titulaire (Required) | Link | Company |
+| `custom_numéro_de_marché` | Numéro de Marché (Required) | Data | |
+
+<AccordionGroup>
+  <Accordion title="Field details">
+    <ParamField body="custom_unite_garantie" type="Select">
+      Guarantee period unit. Options: **Mois**, **Jours**, **Années**.
+    </ParamField>
+    <ParamField body="custom_delai_de_garantie" type="Int">
+      Guarantee delay in the selected unit.
+    </ParamField>
+    <ParamField body="custom_unite_livraison" type="Select">
+      Delivery period unit. Options: **Jours**, **Mois**.
+    </ParamField>
+    <ParamField body="custom_delai_de_livraison" type="Int">
+      Delivery delay in the selected unit.
+    </ParamField>
+    <ParamField body="custom_date_theorique_de_mainlevee" type="Date">
+      Theoretical handover date.
+    </ParamField>
+    <ParamField body="custom_direction" type="Select">
+      Project direction. Options: Chlef, Médéa, Blida, Aïn Defla, Djelfa, Boumerdès, Alger Est, Alger Ouest, Bouira.
+    </ParamField>
+    <ParamField body="workflow_state" type="Link">
+      System link to the Workflow State DocType.
+    </ParamField>
+    <ParamField body="custom_caution_restitution_davance" type="Currency">
+      Advance repayment guarantee amount.
+    </ParamField>
+    <ParamField body="custom_caution_de_bonne_exécution" type="Currency">
+      Performance bond guarantee amount. This field is required.
+    </ParamField>
+    <ParamField body="custom_caution_de_soumission" type="Currency">
+      Tender guarantee amount.
+    </ParamField>
+    <ParamField body="custom_date_ods" type="Date">
+      ODS date.
+    </ParamField>
+    <ParamField body="custom_client" type="Link">
+      Customer linked to the contract. This field is required.
+    </ParamField>
+    <ParamField body="custom_titulaire" type="Link">
+      Company holder of the contract. This field is required.
+    </ParamField>
+    <ParamField body="custom_numéro_de_marché" type="Data">
+      Contract market number. This field is required.
+    </ParamField>
+  </Accordion>
+</AccordionGroup>

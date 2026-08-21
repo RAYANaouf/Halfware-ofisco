@@ -1,0 +1,89 @@
+---
+title: "Contract"
+description: "Client scripts for the Contract DocType."
+---
+
+## Date de Mainlevée
+
+<Note>
+  Script — Doctype: **Contract** — Apply To: **Form**
+</Note>
+
+This script calculates the theoretical handover date (`custom_date_theorique_de_mainlevee`) based on the ODS date, delivery and guarantee delays, and the selected direction.
+
+```javascript
+frappe.ui.form.on('Contract', {
+    refresh: function(frm) {
+        calculate_mainlevee_date(frm);
+    },
+    custom_date_ods: function(frm) {
+        calculate_mainlevee_date(frm);
+    },
+    custom_direction: function(frm) {
+        calculate_mainlevee_date(frm);
+    },
+    custom_delai_de_livraison: function(frm) {
+        calculate_mainlevee_date(frm);
+    },
+    custom_unite_livraison: function(frm) {
+        calculate_mainlevee_date(frm);
+    },
+    custom_delai_de_garantie: function(frm) {
+        calculate_mainlevee_date(frm);
+    },
+    custom_unite_garantie: function(frm) {
+        calculate_mainlevee_date(frm);
+    }
+});
+
+function calculate_mainlevee_date(frm) {
+    if (!frm.doc.custom_date_ods || !frm.doc.custom_direction) {
+        return;
+    }
+
+    let ods_date = frappe.datetime.str_to_obj(frm.doc.custom_date_ods);
+    if (!ods_date) return;
+
+    let val_liv = parseInt(frm.doc.custom_delai_de_livraison) || 0;
+    let unit_liv = frm.doc.custom_unite_livraison || 'Jours';
+
+    let val_gar = parseInt(frm.doc.custom_delai_de_garantie) || 0;
+    let unit_gar = frm.doc.custom_unite_garantie || 'Jours';
+
+    let date_apres_livraison = new Date(ods_date.getTime());
+    if (unit_liv === 'Mois') {
+        date_apres_livraison = frappe.datetime.add_months(ods_date, val_liv);
+    } else if (unit_liv === 'Années') {
+        date_apres_livraison = frappe.datetime.add_months(ods_date, val_liv * 12);
+    } else {
+        date_apres_livraison = frappe.datetime.add_days(ods_date, val_liv);
+    }
+
+    let delai_garantie_jours = 0;
+    if (unit_gar === 'Années') {
+        delai_garantie_jours = val_gar * 365;
+    } else if (unit_gar === 'Mois') {
+        delai_garantie_jours = val_gar * 30;
+    } else {
+        delai_garantie_jours = val_gar;
+    }
+
+    let mainlevee_date;
+    let rule1_directions = ['Chlef', 'Médéa', 'Blida', 'Aïn Defla', 'Djelfa'];
+    let rule2_directions = ['Boumerdès', 'Alger Est', 'Alger Ouest', 'Bouira'];
+
+    let direction = frm.doc.custom_direction;
+
+    if (rule1_directions.includes(direction)) {
+        let total_days = delai_garantie_jours + 30;
+        mainlevee_date = frappe.datetime.add_days(date_apres_livraison, total_days);
+    } 
+    else if (rule2_directions.includes(direction)) {
+        mainlevee_date = frappe.datetime.add_months(date_apres_livraison, 13);
+    }
+
+    if (mainlevee_date) {
+        frm.set_value('custom_date_theorique_de_mainlevee', frappe.datetime.obj_to_str(mainlevee_date));
+    }
+}
+```

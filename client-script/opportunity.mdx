@@ -1,0 +1,92 @@
+---
+title: "Opportunity"
+description: "Client scripts for the Opportunity DocType."
+---
+
+## Alerte Échantillons Expédiés
+
+<Note>
+  Script — Doctype: **Opportunity** — Apply To: **Form**
+</Note>
+
+This script checks for delivered sample delivery notes (with a zero grand total) for the selected customer and displays an alert when samples have already been sent.
+
+```javascript
+frappe.ui.form.on('Opportunity', {
+    party_name: function(frm) {
+        frm.has_shown_sample_alert = false;
+        check_samples_sent(frm);
+    },
+    refresh: function(frm) {
+        if (frm.doc.party_name && !frm.has_shown_sample_alert) {
+            check_samples_sent(frm);
+        }
+    }
+});
+
+function check_samples_sent(frm) {
+    if (!frm.doc.party_name || frm.has_shown_sample_alert) return;
+
+    frappe.db.get_list('Delivery Note', {
+        filters: {
+            'customer': frm.doc.party_name,
+            'docstatus': 1,
+            'grand_total': 0
+        },
+        fields: ['name']
+    }).then(delivery_notes => {
+        if (delivery_notes && delivery_notes.length > 0) {
+            frm.has_shown_sample_alert = true;
+
+            let message_html = "<b>⚠️ Attention : Des échantillons ont déjà été expédiés à ce client !</b><br><br>";
+            message_html += "<table class='table table-bordered' style='font-size: 12px;'>";
+            message_html += "<thead><tr><th>N° Bon de Livraison</th></tr></thead><tbody>";
+
+            delivery_notes.forEach(dn => {
+                let dn_link = `<a href="/app/delivery-note/${dn.name}" target="_blank" style="font-weight: bold; color: #1B84FF; text-decoration: underline;">${dn.name}</a>`;
+
+                message_html += `<tr>
+                    <td>${dn_link}</td>
+                </tr>`;
+            });
+
+            message_html += "</tbody></table>";
+
+            frappe.msgprint({
+                title: __('Alerte Échantillons Expédiés'),
+                indicator: 'orange',
+                message: message_html
+            });
+        }
+    });
+}
+```
+
+## Link Opportunity to Project
+
+<Note>
+  Script — Doctype: **Opportunity** — Apply To: **Form**
+</Note>
+
+This script adds a direct action to open the linked project when `custom_reference_du_marche` is set and a matching Project exists.
+
+```javascript
+frappe.ui.form.on('Opportunity', {
+    refresh: function(frm) {
+        if (frm.doc.custom_reference_du_marche) {
+            frappe.db.exists('Project', frm.doc.custom_reference_du_marche).then(exists => {
+                if (exists) {
+                    frm.add_custom_button(__('Voir le Projet'), function() {
+                        frappe.set_route('Form', 'Project', frm.doc.custom_reference_du_marche);
+                    }, __('Accès Direct'));
+
+                    frm.dashboard.add_indicator(
+                        __('Projet Créé: ') + `<a href="/app/project/${frm.doc.custom_reference_du_marche}" style="font-weight: bold; text-decoration: underline;">${frm.doc.custom_reference_du_marche}</a>`, 
+                        'green'
+                    );
+                }
+            });
+        }
+    }
+});
+```

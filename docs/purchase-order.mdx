@@ -1,0 +1,22 @@
+---
+title: "Purchase Order"
+description: "Custom fields for the Purchase Order DocType."
+---
+
+## Purchase Order
+
+| Field | Label | Type | Read Only |
+|---|---|---|---|
+| `custom_reste_a_payer` | Reste à payer (Read Only) | Currency | Yes |
+| `custom_ancien_solde` | Ancien Solde (Read Only) | Currency | Yes |
+
+<AccordionGroup>
+  <Accordion title="Field details">
+    <ParamField body="custom_reste_a_payer" type="Currency">
+      Remaining amount to be paid. Read-only.
+    </ParamField>
+    <ParamField body="custom_ancien_solde" type="Currency">
+      Previous balance. Read-only.
+    </ParamField>
+  </Accordion>
+</AccordionGroup>

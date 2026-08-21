@@ -1,0 +1,24 @@
+---
+title: "Project"
+description: "Server-side automation for the Project DocType."
+---
+
+## Calcul Coût Total Global Project
+
+<Note>
+  Script — Type: **DocType Event** — Reference: **Project** — Event: **Before Save**
+</Note>
+
+This server script calculates the global total cost by summing the pre-sales cost, labor cost, stock cost, and purchase cost before saving the Project document.
+
+```python
+cout_avant_vente = doc.get("custom_cout_avant_vente", 0) or 0
+
+cout_main_oeuvre = doc.get("total_costing_amount", 0) or 0
+
+cout_stock = doc.get("total_consumed_material_cost", 0) or 0
+
+cout_achats = doc.get("total_purchase_cost", 0) or 0
+
+doc.custom_cout_total_global = cout_avant_vente + cout_main_oeuvre + cout_stock + cout_achats
+```

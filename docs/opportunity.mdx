@@ -11,6 +11,8 @@ description: "Custom fields for the Opportunity DocType."
 | `custom_date_limite_depot` | Date limite de dépôt | Datetime | `eval:["Appel d'Offres","Consultation restreinte"].indexOf(doc.opportunity_type) > -1` |
 | `custom_date_ouverture_plis` | Date d'ouverture des plis | Datetime | `eval:["Appel d'Offres","Consultation restreinte"].indexOf(doc.opportunity_type) > -1` |
 | `custom_caution` | Caution provisoire / Définitive | Float | `eval:["Appel d'Offres","Consultation restreinte"].indexOf(doc.opportunity_type) > -1` |
+| `custom_projet_lie` | Projet lié (Read Only) | Link | — |
+| `custom_cout_avant_vente` | Coût Avant Vente | Float | — |
 
 <Note>
   The reference field appears for **Appel d'Offres**, **Consultation restreinte**, and **Gré à gré**. The date and caution fields apply only to **Appel d'Offres** and **Consultation restreinte**.
@@ -29,6 +31,12 @@ description: "Custom fields for the Opportunity DocType."
     </ParamField>
     <ParamField body="custom_caution" type="Float">
       Provisional or definitive guarantee amount. Visible for **Appel d'Offres** and **Consultation restreinte**.
+    </ParamField>
+    <ParamField body="custom_projet_lie" type="Link">
+      Linked project. Inserted after `custom_reference_marche` and marked read-only.
+    </ParamField>
+    <ParamField body="custom_cout_avant_vente" type="Float">
+      Pre-sales cost. Inserted after `opportunity_amount`.
     </ParamField>
   </Accordion>
 </AccordionGroup>
