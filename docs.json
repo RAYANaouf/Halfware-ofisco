@@ -55,6 +55,10 @@
           "print-format/payment-entry",
           "print-format/stock-reconciliation"
         ]
+      },
+      {
+        "tab": "Report",
+        "pages": []
       }
     ]
   },
